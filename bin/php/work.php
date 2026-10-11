@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+/**
+ * ./console ext:expqueue:work — Run queued jobs (the worker): --once, --until-empty, --max-jobs, --max-seconds, --class, --resource
+ * The code is in classes/expqueuecommand.php; run with --help for the options.
+ *
+ * @copyright Copyright (C) 1998 - 2026 7x & Exponential Foundation. All rights reserved.
+ * @license GNU General Public License v2.0 (or any later version)
+ * @package expqueue
+ * @description Run queued jobs (the worker): --once, --until-empty, --max-jobs, --max-seconds, --class, --resource
+ */
+
+$root = dirname( __DIR__, 4 );
+chdir( $root );
+require_once $root . '/autoload.php';
+expQueueCommand::main( 'work' );

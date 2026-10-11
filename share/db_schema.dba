@@ -1,0 +1,868 @@
+<?php
+// The database schema of expqueue (the Exponential job queue): generated from expQueueSchema::definition() by
+// extension/expqueue/bin/php/install-schema.php --write-files. Do not edit by hand.
+$schema = array (
+  'expqueue_class' => 
+  array (
+    'name' => 'expqueue_class',
+    'fields' => 
+    array (
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'name' => 
+      array (
+        'length' => 40,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'paused' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'stride_pass' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'name',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_event' => 
+  array (
+    'name' => 'expqueue_event',
+    'fields' => 
+    array (
+      'attempt' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'data' => 
+      array (
+        'type' => 'longtext',
+        'default' => false,
+      ),
+      'group_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'id' => 
+      array (
+        'type' => 'auto_increment',
+        'default' => false,
+      ),
+      'job_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'kind' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'message' => 
+      array (
+        'length' => 255,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'ts' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'worker' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      'expqueue_event_job' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'job_id',
+          1 => 'id',
+        ),
+      ),
+      'expqueue_event_kind' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'kind',
+          1 => 'ts',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_group' => 
+  array (
+    'name' => 'expqueue_group',
+    'fields' => 
+    array (
+      'budget_micros' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'created' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'id' => 
+      array (
+        'type' => 'auto_increment',
+        'default' => false,
+      ),
+      'label' => 
+      array (
+        'length' => 255,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'site' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'spent_micros' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'state' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => 'active',
+      ),
+      'total' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'type' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'user_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'uuid' => 
+      array (
+        'length' => 36,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      'expqueue_group_uuid' => 
+      array (
+        'type' => 'unique',
+        'fields' => 
+        array (
+          0 => 'uuid',
+        ),
+      ),
+      'expqueue_group_state' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'state',
+          1 => 'modified',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_job' => 
+  array (
+    'name' => 'expqueue_job',
+    'fields' => 
+    array (
+      'attempts' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'cancel_requested' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'checkpoint' => 
+      array (
+        'type' => 'longtext',
+        'default' => false,
+      ),
+      'class' => 
+      array (
+        'length' => 40,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => 'bulk',
+      ),
+      'cost_actual_micros' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'cost_estimate_micros' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'cost_reserved_micros' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'created' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'deadline' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'error_class' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'external_ref' => 
+      array (
+        'length' => 120,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'finished' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'group_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'id' => 
+      array (
+        'type' => 'auto_increment',
+        'default' => false,
+      ),
+      'idempotency_key' => 
+      array (
+        'length' => 64,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'lane' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'last_error' => 
+      array (
+        'length' => 255,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'lease_owner' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'lease_until' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'max_attempts' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'parent_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'payload' => 
+      array (
+        'type' => 'longtext',
+        'default' => false,
+      ),
+      'priority' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 50,
+      ),
+      'progress_done' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'progress_message' => 
+      array (
+        'length' => 255,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'progress_total' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'ready_since' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'resource_key' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'result' => 
+      array (
+        'type' => 'longtext',
+        'default' => false,
+      ),
+      'run_after' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'site' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'started' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'state' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => 'ready',
+      ),
+      'timeout' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'type' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'user_id' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'uuid' => 
+      array (
+        'length' => 36,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'id',
+        ),
+      ),
+      'expqueue_job_uuid' => 
+      array (
+        'type' => 'unique',
+        'fields' => 
+        array (
+          0 => 'uuid',
+        ),
+      ),
+      'expqueue_job_sched' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'state',
+          1 => 'class',
+          2 => 'run_after',
+        ),
+      ),
+      'expqueue_job_group' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'group_id',
+          1 => 'state',
+        ),
+      ),
+      'expqueue_job_res' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'resource_key',
+          1 => 'state',
+        ),
+      ),
+      'expqueue_job_user' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'user_id',
+          1 => 'state',
+        ),
+      ),
+      'expqueue_job_idem' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'type',
+          1 => 'idempotency_key',
+        ),
+      ),
+      'expqueue_job_parent' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'parent_id',
+        ),
+      ),
+      'expqueue_job_finished' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'state',
+          1 => 'finished',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_mutex' => 
+  array (
+    'name' => 'expqueue_mutex',
+    'fields' => 
+    array (
+      'expires' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'name' => 
+      array (
+        'length' => 40,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'owner' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'name',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_resource' => 
+  array (
+    'name' => 'expqueue_resource',
+    'fields' => 
+    array (
+      'cooldown_until' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'last_status' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'max_concurrent' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'paused' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'remaining_requests' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => -1,
+      ),
+      'remaining_tokens' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => -1,
+      ),
+      'reset_at' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'resource_key' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'success_streak' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'resource_key',
+        ),
+      ),
+    ),
+  ),
+  'expqueue_worker' => 
+  array (
+    'name' => 'expqueue_worker',
+    'fields' => 
+    array (
+      'current_job' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'filter' => 
+      array (
+        'length' => 255,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'heartbeat' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'host' => 
+      array (
+        'length' => 60,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'jobs_done' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'jobs_failed' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'modified' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'origin' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'os_user' => 
+      array (
+        'length' => 40,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+      'pid' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'started' => 
+      array (
+        'length' => 11,
+        'type' => 'int',
+        'not_null' => '1',
+        'default' => 0,
+      ),
+      'state' => 
+      array (
+        'length' => 16,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => 'running',
+      ),
+      'worker_id' => 
+      array (
+        'length' => 80,
+        'type' => 'varchar',
+        'not_null' => '1',
+        'default' => '',
+      ),
+    ),
+    'indexes' => 
+    array (
+      'PRIMARY' => 
+      array (
+        'type' => 'primary',
+        'fields' => 
+        array (
+          0 => 'worker_id',
+        ),
+      ),
+      'expqueue_worker_beat' => 
+      array (
+        'type' => 'non-unique',
+        'fields' => 
+        array (
+          0 => 'state',
+          1 => 'heartbeat',
+        ),
+      ),
+    ),
+  ),
+  '_info' => 
+  array (
+    'format' => 'generic',
+  ),
+);
+
+?>

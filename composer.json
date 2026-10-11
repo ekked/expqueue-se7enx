@@ -1,0 +1,29 @@
+{
+    "name": "se7enxweb/expqueue",
+    "description": "The Exponential job queue: a generic, database-backed job queue with priority classes, fair scheduling, per-resource concurrency limits, leases, retries, a dead letter, idempotency, CLI/cron/systemd workers and an admin dashboard",
+    "type": "ezpublish-legacy-extension",
+    "keywords": [ "Exponential", "Exponential 6", "legacy extension", "job queue", "background jobs", "worker", "scheduler", "systemd", "cron" ],
+    "homepage": "https://github.com/se7enxweb/expqueue",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        { "name": "7x", "homepage": "https://se7enx.com", "email": "info@se7enx.com", "role": "Author" }
+    ],
+    "support": {
+        "issues": "https://github.com/se7enxweb/expqueue/issues",
+        "source": "https://github.com/se7enxweb/expqueue"
+    },
+    "require": {
+        "php": ">=8.0",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "se7enxweb/exponential": "^6.0.14",
+        "se7enxweb/ezpublish-legacy-installer": "*"
+    },
+    "suggest": {
+        "ext-pcntl": "lets a worker finish its current job on SIGTERM/SIGINT before it leaves",
+        "ext-posix": "lets workers started as root become the site user"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "expqueue"
+    }
+}

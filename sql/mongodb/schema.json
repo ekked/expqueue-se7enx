@@ -1,0 +1,221 @@
+{
+    "database": "expqueue",
+    "comment": "expqueue (the Exponential job queue) on MongoDB: the collections and indexes the kernel's MongoDB schema handler (expMongoSchema) creates from share/db_schema.dba; bin/php/install-schema.php --install does it in a running installation. Idempotency is enforced under the dispatcher lock, as on the SQL engines.",
+    "collections": [
+        {
+            "name": "expqueue_job",
+            "indexes": [
+                {
+                    "keys": {
+                        "id": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "uuid": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_uuid",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "state": 1,
+                        "class": 1,
+                        "run_after": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_sched"
+                    }
+                },
+                {
+                    "keys": {
+                        "group_id": 1,
+                        "state": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_group"
+                    }
+                },
+                {
+                    "keys": {
+                        "resource_key": 1,
+                        "state": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_res"
+                    }
+                },
+                {
+                    "keys": {
+                        "user_id": 1,
+                        "state": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_user"
+                    }
+                },
+                {
+                    "keys": {
+                        "type": 1,
+                        "idempotency_key": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_idem"
+                    }
+                },
+                {
+                    "keys": {
+                        "parent_id": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_parent"
+                    }
+                },
+                {
+                    "keys": {
+                        "state": 1,
+                        "finished": 1
+                    },
+                    "options": {
+                        "name": "expqueue_job_finished"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_group",
+            "indexes": [
+                {
+                    "keys": {
+                        "id": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "uuid": 1
+                    },
+                    "options": {
+                        "name": "expqueue_group_uuid",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "state": 1,
+                        "modified": 1
+                    },
+                    "options": {
+                        "name": "expqueue_group_state"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_event",
+            "indexes": [
+                {
+                    "keys": {
+                        "id": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "job_id": 1,
+                        "id": 1
+                    },
+                    "options": {
+                        "name": "expqueue_event_job"
+                    }
+                },
+                {
+                    "keys": {
+                        "kind": 1,
+                        "ts": 1
+                    },
+                    "options": {
+                        "name": "expqueue_event_kind"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_resource",
+            "indexes": [
+                {
+                    "keys": {
+                        "resource_key": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_class",
+            "indexes": [
+                {
+                    "keys": {
+                        "name": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_mutex",
+            "indexes": [
+                {
+                    "keys": {
+                        "name": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "expqueue_worker",
+            "indexes": [
+                {
+                    "keys": {
+                        "worker_id": 1
+                    },
+                    "options": {
+                        "name": "PRIMARY",
+                        "unique": true
+                    }
+                },
+                {
+                    "keys": {
+                        "state": 1,
+                        "heartbeat": 1
+                    },
+                    "options": {
+                        "name": "expqueue_worker_beat"
+                    }
+                }
+            ]
+        }
+    ]
+}

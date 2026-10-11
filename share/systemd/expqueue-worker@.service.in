@@ -1,0 +1,39 @@
+# The worker of the Exponential job queue (expqueue) for one installation, one process per instance (%i).
+# Written by ./console ext:expqueue:service install from extension/expqueue/share/systemd/expqueue-worker@.service.in;
+# the @...@ placeholders are filled in from the installation and expqueue.ini [ServiceSettings].
+#
+# The worker leaves on its own at --max-seconds / --max-jobs / the memory limit (memory hygiene) and systemd starts a
+# fresh one: hence Restart=always, not on-failure (a planned exit has the code 0). The cron part expqueue keeps
+# working next to it as the safety net and does nothing while this worker's heartbeat is fresh.
+[Unit]
+Description=Exponential job queue worker %i (@ROOT@)
+After=network-online.target mariadb.service mysqld.service postgresql.service
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=20
+
+[Service]
+Type=simple
+User=@USER@
+Group=@GROUP@
+WorkingDirectory=@ROOT@
+ExecStart=@PHP@ @ROOT@/extension/expqueue/bin/php/work.php --origin=systemd --max-seconds=@MAXSECONDS@ --max-jobs=@MAXJOBS@@SITEACCESS@ -q
+Restart=always
+RestartSec=10
+Nice=@NICE@
+CPUWeight=@CPUWEIGHT@
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+MemoryMax=@MEMORYMAX@
+TasksMax=@TASKSMAX@
+# SIGTERM: the worker finishes the job it runs, then leaves; a job longer than this is reaped and runs again
+KillSignal=SIGTERM
+TimeoutStopSec=@STOPSECONDS@
+UMask=0007
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+SyslogIdentifier=@NAME@
+
+[Install]
+WantedBy=multi-user.target
