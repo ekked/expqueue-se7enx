@@ -1,0 +1,14 @@
+# expqueue documentation
+
+| Page | What it covers |
+|---|---|
+| [architecture.md](architecture.md) | The pieces, the states of a job, claiming, leases, locks, root and the site user |
+| [scheduling.md](scheduling.md) | Priority classes, stride scheduling, aging, starvation guard, MinShare, quotas, resources, rules |
+| [api.md](api.md) | The API for producers and handlers, with a worked example handler |
+| [workers-cron-systemd.md](workers-cron-systemd.md) | The worker, the cron part, the systemd service |
+| [admin.md](admin.md) | Setup > Job queue: the pages, the controls, the policies |
+| [cli.md](cli.md) | Every `./console ext:expqueue:*` command |
+| [configuration.md](configuration.md) | Every setting of `expqueue.ini` |
+| [database.md](database.md) | The tables, the schema per engine, install and upgrade |
+| [troubleshooting.md](troubleshooting.md) | What to check when jobs do not run, wait long or die |
+| [changelog/0.1.0.md](changelog/0.1.0.md) | What 0.1.0 contains |
