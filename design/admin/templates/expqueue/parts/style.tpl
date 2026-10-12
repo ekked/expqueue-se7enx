@@ -64,7 +64,7 @@
 
 /* cards and grid */
 .exp-queue-page .q-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 12px; margin: 0 0 16px; }
-.exp-queue-page .q-card { min-width: 0; margin: 0; padding: 12px 14px; border: 1px solid var(--q-line); border-radius: var(--q-radius); background: var(--q-card); }
+.exp-queue-page .q-card { min-width: 0; margin: 0; padding: 12px 14px; border: 1px solid var(--q-line); border-radius: var(--q-radius); background: var(--q-card); overflow-x: auto; }
 .exp-queue-page .q-card.is-wide { grid-column: 1 / -1; }
 
 /* the chart: jobs ended per hour, done and dead stacked */
