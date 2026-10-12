@@ -88,7 +88,7 @@
 </div>
 </section>
 
-<section class="q-card" aria-labelledby="q-res-title">
+<section class="q-card is-wide" aria-labelledby="q-res-title">
 <h2 class="q-h2" id="q-res-title">{'Resources'|i18n( 'extension/expqueue' )}</h2>
 {if $resources|count|eq( 0 )}
 <p class="q-empty">{'No job names a resource yet.'|i18n( 'extension/expqueue' )}</p>
