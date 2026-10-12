@@ -614,4 +614,47 @@
         <translation>angehalten</translation>
     </message>
 </context>
+<context>
+    <name>extension/expqueue/rad</name>
+    <message>
+        <source>Queue job types</source>
+        <translation>Jobtypen der Warteschlange</translation>
+    </message>
+    <message>
+        <source>The kinds of job a worker runs (expqueue.ini [JobType_&lt;type&gt;] Handler=, implementing expQueueHandler), the queue's own and every extension's.</source>
+        <translation>Die Arten von Jobs, die ein Worker ausführt (expqueue.ini [JobType_&lt;Typ&gt;] Handler=, implementiert expQueueHandler), die der Warteschlange selbst und die jeder Erweiterung.</translation>
+    </message>
+    <message>
+        <source>Queue job type priority classes</source>
+        <translation>Prioritätsklassen der Jobtypen</translation>
+    </message>
+    <message>
+        <source>The priority class each job type runs in (expqueue.ini [JobType_&lt;type&gt;] Class=, a [QueueClass_&lt;class&gt;] block); refers to the job types, so not added again.</source>
+        <translation>Die Prioritätsklasse, in der jeder Jobtyp läuft (expqueue.ini [JobType_&lt;Typ&gt;] Class=, ein Block [QueueClass_&lt;Klasse&gt;]); verweist auf die Jobtypen, daher nicht erneut addiert.</translation>
+    </message>
+    <message>
+        <source>Queue priority classes</source>
+        <translation>Prioritätsklassen der Warteschlange</translation>
+    </message>
+    <message>
+        <source>The lanes the scheduler shares the workers between (expqueue.ini [QueueSettings] Classes[], each with its [QueueClass_&lt;class&gt;]).</source>
+        <translation>Die Lanes, auf die der Scheduler die Worker verteilt (expqueue.ini [QueueSettings] Classes[], jeweils mit ihrem [QueueClass_&lt;Klasse&gt;]).</translation>
+    </message>
+    <message>
+        <source>Queue resources</source>
+        <translation>Ressourcen der Warteschlange</translation>
+    </message>
+    <message>
+        <source>The resources whose concurrency the queue limits (expqueue.ini [QueueResource_&lt;resource&gt;]).</source>
+        <translation>Die Ressourcen, deren Parallelität die Warteschlange begrenzt (expqueue.ini [QueueResource_&lt;Ressource&gt;]).</translation>
+    </message>
+    <message>
+        <source>Queue commands</source>
+        <translation>Befehle der Warteschlange</translation>
+    </message>
+    <message>
+        <source>The commands ./console ext:expqueue:&lt;name&gt; (expQueueCommand::COMMANDS).</source>
+        <translation>Die Befehle ./console ext:expqueue:&lt;Name&gt; (expQueueCommand::COMMANDS).</translation>
+    </message>
+</context>
 </TS>

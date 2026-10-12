@@ -614,4 +614,47 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>extension/expqueue/rad</name>
+    <message>
+        <source>Queue job types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The kinds of job a worker runs (expqueue.ini [JobType_&lt;type&gt;] Handler=, implementing expQueueHandler), the queue's own and every extension's.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Queue job type priority classes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The priority class each job type runs in (expqueue.ini [JobType_&lt;type&gt;] Class=, a [QueueClass_&lt;class&gt;] block); refers to the job types, so not added again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Queue priority classes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The lanes the scheduler shares the workers between (expqueue.ini [QueueSettings] Classes[], each with its [QueueClass_&lt;class&gt;]).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Queue resources</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The resources whose concurrency the queue limits (expqueue.ini [QueueResource_&lt;resource&gt;]).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Queue commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The commands ./console ext:expqueue:&lt;name&gt; (expQueueCommand::COMMANDS).</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

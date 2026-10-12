@@ -614,4 +614,47 @@
         <translation>paused</translation>
     </message>
 </context>
+<context>
+    <name>extension/expqueue/rad</name>
+    <message>
+        <source>Queue job types</source>
+        <translation>Queue job types</translation>
+    </message>
+    <message>
+        <source>The kinds of job a worker runs (expqueue.ini [JobType_&lt;type&gt;] Handler=, implementing expQueueHandler), the queue's own and every extension's.</source>
+        <translation>The kinds of job a worker runs (expqueue.ini [JobType_&lt;type&gt;] Handler=, implementing expQueueHandler), the queue's own and every extension's.</translation>
+    </message>
+    <message>
+        <source>Queue job type priority classes</source>
+        <translation>Queue job type priority classes</translation>
+    </message>
+    <message>
+        <source>The priority class each job type runs in (expqueue.ini [JobType_&lt;type&gt;] Class=, a [QueueClass_&lt;class&gt;] block); refers to the job types, so not added again.</source>
+        <translation>The priority class each job type runs in (expqueue.ini [JobType_&lt;type&gt;] Class=, a [QueueClass_&lt;class&gt;] block); refers to the job types, so not added again.</translation>
+    </message>
+    <message>
+        <source>Queue priority classes</source>
+        <translation>Queue priority classes</translation>
+    </message>
+    <message>
+        <source>The lanes the scheduler shares the workers between (expqueue.ini [QueueSettings] Classes[], each with its [QueueClass_&lt;class&gt;]).</source>
+        <translation>The lanes the scheduler shares the workers between (expqueue.ini [QueueSettings] Classes[], each with its [QueueClass_&lt;class&gt;]).</translation>
+    </message>
+    <message>
+        <source>Queue resources</source>
+        <translation>Queue resources</translation>
+    </message>
+    <message>
+        <source>The resources whose concurrency the queue limits (expqueue.ini [QueueResource_&lt;resource&gt;]).</source>
+        <translation>The resources whose concurrency the queue limits (expqueue.ini [QueueResource_&lt;resource&gt;]).</translation>
+    </message>
+    <message>
+        <source>Queue commands</source>
+        <translation>Queue commands</translation>
+    </message>
+    <message>
+        <source>The commands ./console ext:expqueue:&lt;name&gt; (expQueueCommand::COMMANDS).</source>
+        <translation>The commands ./console ext:expqueue:&lt;name&gt; (expQueueCommand::COMMANDS).</translation>
+    </message>
+</context>
 </TS>

@@ -81,3 +81,21 @@ starts its worker slice as a separate process that drops privileges.
 Not the kernel's content jobs (`expContentJob*`: one JSON file and one detached worker per large subtree operation).
 expqueue is for many small jobs with priorities and limits; it reuses the content jobs' privilege dropping, file
 ownership and cron safety net.
+
+## Registries in the extension point survey
+
+The kernel's extension point survey (Setup > RAD tools > Extension point survey, `setup/radsurvey/(show)/registries`)
+counts and checks the registries expqueue declares in `settings/rad.ini.append.php` (format: the kernel's
+`settings/rad.ini`, doc/bc/6.0/rad-extension-surface.md "Registries declared in rad.ini"):
+
+| Registry | Read from | Each entry must be |
+| --- | --- | --- |
+| `expqueue_job_types` | `[JobType_<type>] Handler=` in every extension's expqueue.ini | a class implementing `expQueueHandler` |
+| `expqueue_job_type_classes` | `[JobType_<type>] Class=` | a block `[QueueClass_<class>]` (listed, not added) |
+| `expqueue_classes` | `[QueueSettings] Classes[]` | a block `[QueueClass_<class>]` |
+| `expqueue_resources` | `[QueueResource_<resource>]` | any |
+| `expqueue_commands` | `expQueueCommand::COMMANDS` | a command `ext:expqueue:<name>` |
+
+A job type an extension adds in its own expqueue.ini.append.php is counted there at once; one whose handler class is
+missing, or whose priority class has no block, is shown as broken. The cronjob part `expqueue` is listed by the kernel's
+registry `cronjobparts`.
