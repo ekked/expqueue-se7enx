@@ -1,0 +1,119 @@
+/* expqueue: Setup > Job queue (dashboard, jobs, a job, a group).
+   The pages are built from the administration's shared components (.a4-page, .a4-card, .a4-table, .a4-figures,
+   .a4-badge, .a4-tag, .a4-btn, .a4-notice, .a4-empty, .a4-meter, .a4-pct-*) and take every colour, radius, size and
+   space from the --a4-* tokens of components.css, which have a light and a dark value. This file holds only what the
+   components cannot do, as .a4-queue-* classes. Loaded through design.ini [StylesheetSettings] BackendCSSFileList. */
+
+/* the tabs and the status line under the title */
+.a4-queue-top {
+    margin: 0 0 var(--a4-space-3);
+    padding: 0 0 var(--a4-space-3);
+    border-bottom: 1px solid var(--a4-line);
+}
+.a4-queue-top .a4-actions { color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-queue .a4-notice { margin: 0 0 var(--a4-space-3); overflow-wrap: anywhere; }
+
+/* key figures: a warning colour besides the components' ok and bad */
+.a4-queue .a4-figure.is-warn strong { color: var(--a4-warn); }
+.a4-queue .a4-figures { grid-template-columns: repeat(auto-fit, minmax(min(100%, 104px), 1fr)); }
+.a4-queue .a4-figure > a { display: flex; flex-direction: column; gap: 2px; }
+
+/* the card grid: a card can span the whole row */
+.a4-grid.a4-queue-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); margin: 0 0 var(--a4-space-4); }
+.a4-queue-span { grid-column: 1 / -1; }
+.a4-queue .a4-card { overflow-x: auto; }
+.a4-queue .a4-card-head > h2 { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a4-space-2); }
+.a4-queue .a4-card-head > h2 .a4-meta { font-weight: 400; }
+.a4-queue-gap { margin: 0 0 var(--a4-space-3); }
+
+/* the chart: jobs ended per hour, done and dead stacked; heights from .a4-pct-* */
+.a4-queue-chart {
+    display: grid;
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    gap: var(--a4-space-1);
+    align-items: end;
+    height: 110px;
+    margin: var(--a4-space-2) 0 var(--a4-space-1);
+    border-bottom: 1px solid var(--a4-line);
+}
+.a4-queue-bar { position: relative; display: flex; flex-direction: column-reverse; gap: 2px; height: 100%; }
+.a4-queue-seg { display: block; width: 100%; height: calc(var(--a4-pct, 0) * 1%); }
+.a4-queue-seg.is-done { background-color: var(--a4-chart-1); }
+.a4-queue-seg.is-dead { background-color: var(--a4-bad); }
+.a4-queue-seg.is-dead, .a4-queue-seg.is-done:nth-last-child(2) { border-top-left-radius: var(--a4-radius-s); border-top-right-radius: var(--a4-radius-s); }
+.a4-queue-bar:hover .a4-queue-seg, .a4-queue-bar:focus .a4-queue-seg { filter: brightness(1.15); }
+.a4-queue-tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + var(--a4-space-2));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--a4-z-raised);
+    padding: var(--a4-space-1) var(--a4-space-2);
+    border: 1px solid var(--a4-line);
+    border-radius: var(--a4-radius-s);
+    background-color: var(--a4-card);
+    color: var(--a4-ink);
+    font-size: var(--a4-text-xs);
+    white-space: nowrap;
+    box-shadow: var(--a4-shadow-m);
+}
+.a4-queue-bar:hover .a4-queue-tip, .a4-queue-bar:focus .a4-queue-tip { display: block; }
+.a4-queue-axis {
+    display: grid;
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    gap: var(--a4-space-1);
+    color: var(--a4-muted);
+    font-size: var(--a4-text-xs);
+    font-variant-numeric: tabular-nums;
+}
+.a4-queue-axis span { text-align: center; }
+.a4-queue-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--a4-space-1) var(--a4-space-3);
+    margin: var(--a4-space-2) 0 0;
+    color: var(--a4-muted);
+    font-size: var(--a4-text-xs);
+}
+.a4-queue-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: var(--a4-space-1);
+    border-radius: var(--a4-radius-s);
+    vertical-align: -1px;
+}
+.a4-queue-legend .is-done i { background-color: var(--a4-chart-1); }
+.a4-queue-legend .is-dead i { background-color: var(--a4-bad); }
+.a4-queue-tableview { margin-top: var(--a4-space-2); font-size: var(--a4-text-xs); }
+.a4-queue-tableview summary { cursor: pointer; color: var(--a4-muted); }
+
+/* tables inside a card scroll sideways; paused rows are muted; control cells stay as narrow as their buttons */
+.a4-queue-scroll { overflow-x: auto; }
+.a4-queue .a4-table tr.is-paused td { color: var(--a4-muted); }
+.a4-queue .a4-table td.a4-queue-controls { width: 1%; white-space: nowrap; }
+.a4-queue .a4-table th { white-space: normal; }
+.a4-queue .a4-table td { overflow-wrap: anywhere; }
+.a4-queue .a4-table td code { overflow-wrap: anywhere; word-break: normal; }
+.a4-queue .a4-table td.a4-queue-meter-cell { width: 32%; }
+.a4-queue .a4-meter { min-width: 80px; }
+
+/* a control is a small POST form */
+.a4-queue-inline { display: inline; margin: 0; }
+
+/* the filters of the job list: a label and a row of tags; the current filter takes the accent */
+.a4-queue-filters { display: flex; flex-direction: column; gap: var(--a4-space-2); margin: 0 0 var(--a4-space-3); }
+.a4-queue-filters .a4-badges { align-items: center; }
+.a4-queue-label { min-width: 52px; color: var(--a4-muted); font-size: var(--a4-text-xs); }
+.a4-queue .a4-badges a.a4-tag small { color: inherit; opacity: .75; }
+
+@media (max-width: 640px) {
+    .a4-queue-hide-narrow { display: none; }
+    .a4-queue-axis span:nth-child(odd) { visibility: hidden; }
+}
+
+/* a card's head and the blocks after it */
+.a4-queue .a4-card-head + * { margin-top: var(--a4-space-2); }
+.a4-queue .a4-card > * + .a4-card-head { margin-top: var(--a4-space-3); }
+.a4-queue-after { margin-top: var(--a4-space-2); }

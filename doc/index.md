@@ -12,3 +12,4 @@
 | [database.md](database.md) | The tables, the schema per engine, install and upgrade |
 | [troubleshooting.md](troubleshooting.md) | What to check when jobs do not run, wait long or die |
 | [changelog/0.1.0.md](changelog/0.1.0.md) | What 0.1.0 contains |
+| [changelog/0.1.1.md](changelog/0.1.1.md) | What 0.1.1 changes: the admin pages on the shared components |

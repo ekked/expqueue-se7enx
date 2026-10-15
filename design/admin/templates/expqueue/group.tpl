@@ -9,24 +9,24 @@
 {/set-block}
 {include uri='design:expqueue/parts/header.tpl' title=$group.label status=$status}
 
-<section class="q-card q-section" aria-labelledby="q-group-title">
-<h2 class="q-h2" id="q-group-title">{'Progress'|i18n( 'extension/expqueue' )} <span class="q-meta">{'%done of %total ended (%percent%)'|i18n( 'extension/expqueue',, hash( '%done', sub( $group.progress.total, $group.progress.active ), '%total', $group.progress.total, '%percent', $group.progress.percent ) )}</span></h2>
-<div class="q-progress" role="progressbar" aria-valuenow="{$group.progress.percent}" aria-valuemin="0" aria-valuemax="100"><span style="width: {$group.progress.percent}%"></span></div>
-<ul class="q-chips" style="margin-top:10px">
-{foreach $counts as $s => $n}{if gt( $n, 0 )}<li><a href={concat( '/expqueue/list/(state)/', $s, '/(group)/', $group.uuid )|ezurl}>{$s|i18n( 'extension/expqueue/state' )|wash} <small>{$n}</small></a></li>{/if}{/foreach}
+<section class="a4-card a4-queue-gap" aria-labelledby="q-group-title">
+<div class="a4-card-head"><h2 class="a4-h2" id="q-group-title">{'Progress'|i18n( 'extension/expqueue' )} <span class="a4-meta">{'%done of %total ended (%percent%)'|i18n( 'extension/expqueue',, hash( '%done', sub( $group.progress.total, $group.progress.active ), '%total', $group.progress.total, '%percent', $group.progress.percent ) )}</span></h2></div>
+<div class="a4-meter" role="progressbar" aria-label="{'Progress'|i18n( 'extension/expqueue' )|wash}" aria-valuenow="{$group.progress.percent}" aria-valuemin="0" aria-valuemax="100"><span class="a4-pct-{$group.progress.percent}"></span></div>
+<ul class="a4-badges a4-queue-after">
+{foreach $counts as $s => $n}{if gt( $n, 0 )}<li><a class="a4-tag" href={concat( '/expqueue/list/(state)/', $s, '/(group)/', $group.uuid )|ezurl}>{$s|i18n( 'extension/expqueue/state' )|wash} <small>{$n}</small></a></li>{/if}{/foreach}
 </ul>
-<dl class="q-facts" style="margin-top:10px">
+<dl class="a4-facts is-rows a4-queue-after">
 <dt>{'Id'|i18n( 'extension/expqueue' )}</dt><dd><code>{$group.uuid|wash}</code></dd>
 {if ne( $group.type, '' )}<dt>{'Type'|i18n( 'extension/expqueue' )}</dt><dd><code>{$group.type|wash}</code></dd>{/if}
-<dt>{'Created'|i18n( 'extension/expqueue' )}</dt><dd>{$group.created|l10n( 'shortdatetime' )} <span class="q-meta">{$user_name|wash}</span></dd>
+<dt>{'Created'|i18n( 'extension/expqueue' )}</dt><dd>{$group.created|l10n( 'shortdatetime' )} <span class="a4-meta">{$user_name|wash}</span></dd>
 </dl>
 </section>
 
 {if $jobs|count|eq( 0 )}
-<p class="q-empty">{'The group has no job.'|i18n( 'extension/expqueue' )}</p>
+<p class="a4-empty">{'The group has no job.'|i18n( 'extension/expqueue' )}</p>
 {else}
 {include uri='design:expqueue/parts/jobtable.tpl' jobs=$jobs here=$here can_manage=$can_manage}
-<p class="q-pager">{if ne( $prev_url, '' )}<a href={$prev_url|ezurl}>{'Newer'|i18n( 'extension/expqueue' )}</a>{/if}{if ne( $next_url, '' )}<a href={$next_url|ezurl}>{'Older'|i18n( 'extension/expqueue' )}</a>{/if}</p>
+<p class="a4-row">{if ne( $prev_url, '' )}<a href={$prev_url|ezurl}>{'Newer'|i18n( 'extension/expqueue' )}</a>{/if}{if ne( $next_url, '' )}<a href={$next_url|ezurl}>{'Older'|i18n( 'extension/expqueue' )}</a>{/if}</p>
 {/if}
 
 {include uri='design:expqueue/parts/footer.tpl'}

@@ -27,5 +27,12 @@ Neither has limitations in 0.1.0.
 
 ## Look
 
-The pages use admin4's tokens (`--a4-*`) where they exist and fall back to their own values in the older admin
-designs; the chart's two colours were checked for colour-vision deficiencies and contrast on the white card.
+The pages are built from the administration's shared components (`.a4-page`, `.a4-card`, `.a4-table`, `.a4-figures`,
+`.a4-badge`, `.a4-tag`, `.a4-btn`, `.a4-notice`, `.a4-empty`, `.a4-meter` with `.a4-pct-*`) and take every colour,
+radius and space from the `--a4-*` tokens, which have a light and a dark value, so they follow admin4's dark mode.
+What the components cannot do (the hourly chart, the filter rows, the narrow-window rules) is in
+`design/admin/stylesheets/expqueue.css` as `.a4-queue-*` classes, loaded through `design.ini [StylesheetSettings]
+BackendCSSFileList`. No template carries a `<style>` block or a `style=""` attribute; a per-element amount (a bar's
+height, a progress) is an `.a4-pct-<n>` class. The DB-less test `tests/unit/StylingRulesTest.php` (run `phpunit` in the
+extension) fails on inline CSS, colour literals or a custom property of the extension's own. One template set serves
+admin, admin4 and admin4l.
