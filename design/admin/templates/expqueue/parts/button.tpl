@@ -1,7 +1,9 @@
 {* One control of the job queue: a small POST form to expqueue/action (ezformtoken adds its token to every POST form).
    Input: $action, $label, $here (the page to come back to); optional $scope, $name, $job, $group, $kind (primary, danger),
-   $confirm (a question asked before it is sent). Shown only to users with expqueue/manage (the caller checks). *}
-<form class="a4-queue-inline" method="post" action={'/expqueue/action'|ezurl}{if is_set( $confirm )} onsubmit="return window.confirm( this.getAttribute( 'data-confirm' ) );" data-confirm="{$confirm|wash}"{/if}>
+   $confirm (a question asked before it is sent: data-a4-confirm, asked by admin4's a4_actions.js and, in the other
+   administration designs, by javascript/expqueue_confirm.js; no inline handler, so the form works under a Content
+   Security Policy). Shown only to users with expqueue/manage (the caller checks). *}
+<form class="a4-queue-inline" method="post" action={'/expqueue/action'|ezurl}{if is_set( $confirm )} data-a4-confirm="{$confirm|wash}"{/if}>
 <input type="hidden" name="Action" value="{$action|wash}" />
 <input type="hidden" name="RedirectURI" value="{$here|wash}" />
 {if is_set( $scope )}<input type="hidden" name="Scope" value="{$scope|wash}" />{/if}

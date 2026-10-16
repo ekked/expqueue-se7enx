@@ -10,4 +10,9 @@ DesignExtensions[]=expqueue
 [StylesheetSettings]
 BackendCSSFileList[]=expqueue.css
 
+# The question of a control that needs a confirmation (data-a4-confirm) in a design without admin4's a4_actions.js.
+# No template carries an inline script or event handler attribute (tests/unit/StylingRulesTest.php).
+[JavaScriptSettings]
+BackendJavaScriptList[]=expqueue_confirm.js
+
 */ ?>
