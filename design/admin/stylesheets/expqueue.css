@@ -114,6 +114,26 @@
 }
 
 /* a card's head and the blocks after it */
-.a4-queue .a4-card-head + * { margin-top: var(--a4-space-2); }
 .a4-queue .a4-card > * + .a4-card-head { margin-top: var(--a4-space-3); }
 .a4-queue-after { margin-top: var(--a4-space-2); }
+
+/* density: the queue pages are lists of many short rows, so cells, facts and cards sit closer than the components'
+   defaults (the layout of 0.1.0) */
+.a4-queue .a4-card { padding: var(--a4-card-pad-y) var(--a4-space-3); }
+.a4-queue .a4-table.is-compact th,
+.a4-queue .a4-table.is-compact td { padding: var(--a4-space-1) var(--a4-space-2); }
+.a4-queue .a4-facts.is-rows { gap: var(--a4-space-1) var(--a4-space-3); margin: var(--a4-space-2) 0 0; }
+.a4-queue .a4-facts.is-rows dd > .a4-meta { display: inline; }
+.a4-queue .a4-card-head + *,
+.a4-queue .a4-queue-after { margin-top: var(--a4-space-2); }
+
+/* narrow boxes: a table measures its own box (the classic admin's content column at 200 % zoom is about 620px
+   wide), drops its secondary columns and lets its headers wrap, so it fits without scrolling sideways */
+.a4-queue-scroll,
+.a4-queue .a4-table-wrap { container-type: inline-size; }
+@container (max-width: 760px) {
+    .a4-queue-hide-narrow { display: none; }
+    .a4-queue .a4-table.is-compact th { letter-spacing: 0; }
+    .a4-queue .a4-table.is-compact th,
+    .a4-queue .a4-table.is-compact td { padding: var(--a4-space-1); }
+}
