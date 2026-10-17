@@ -36,3 +36,10 @@ BackendCSSFileList`. No template carries a `<style>` block or a `style=""` attri
 height, a progress) is an `.a4-pct-<n>` class. The DB-less test `tests/unit/StylingRulesTest.php` (run `phpunit` in the
 extension) fails on inline CSS, colour literals or a custom property of the extension's own. One template set serves
 admin, admin4 and admin4l.
+
+No template carries an inline script or an `on...=` event handler attribute either, so the pages run under a Content
+Security Policy without `'unsafe-inline'`. A control that asks before it is sent (`$confirm` of
+`expqueue/parts/button.tpl`) declares its question in `data-a4-confirm`: admin4 and admin4l ask it with their
+`a4_actions.js`, the other administration designs with `design/admin/javascript/expqueue_confirm.js`, loaded through
+`design.ini [JavaScriptSettings] BackendJavaScriptList`. `tests/unit/ScriptRulesTest.php` fails on an inline script or
+handler.
