@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>The tables of the job queue are missing in this database. Run ./console ext:expqueue:install-schema on the server.</source>
-        <translation>Faltan las tablas de la cola de tareas en esta base de datos. Ejecute ./console ext:expqueue:install-schema en el servidor.</translation>
+        <translation>Faltan las tablas de la cola de tareas en esta base de datos. Ejecuta ./console ext:expqueue:install-schema en el servidor.</translation>
     </message>
     <message>
         <source>Dashboard</source>
@@ -280,7 +280,7 @@
     </message>
     <message>
         <source>add php runcronjobs.php -q expqueue to the crontab (every minute)</source>
-        <translation>añada php runcronjobs.php -q expqueue al crontab (cada minuto)</translation>
+        <translation>añade php runcronjobs.php -q expqueue al crontab (cada minuto)</translation>
     </message>
     <message>
         <source>systemd service</source>
