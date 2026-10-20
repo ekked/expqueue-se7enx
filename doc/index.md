@@ -15,3 +15,4 @@
 | [changelog/0.1.1.md](changelog/0.1.1.md) | What 0.1.1 changes: the admin pages on the shared components |
 | [changelog/0.1.2.md](changelog/0.1.2.md) | What 0.1.2 changes: denser cards and tables that fit a narrow column |
 | [changelog/0.1.3.md](changelog/0.1.3.md) | What 0.1.3 changes: confirmations without inline script |
+| [changelog/0.1.4.md](changelog/0.1.4.md) | What 0.1.4 changes: translations in ten more languages |
