@@ -16,3 +16,4 @@
 | [changelog/0.1.2.md](changelog/0.1.2.md) | What 0.1.2 changes: denser cards and tables that fit a narrow column |
 | [changelog/0.1.3.md](changelog/0.1.3.md) | What 0.1.3 changes: confirmations without inline script |
 | [changelog/0.1.4.md](changelog/0.1.4.md) | What 0.1.4 changes: translations in ten more languages |
+| [changelog/0.1.5.md](changelog/0.1.5.md) | What 0.1.5 changes: translations in eight more languages, Arabic and Hebrew among them |
