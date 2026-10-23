@@ -88,11 +88,11 @@
     </message>
     <message>
         <source>Resume queue</source>
-        <translation>Wznów kolejkę</translation>
+        <translation>Wznowić kolejkę</translation>
     </message>
     <message>
         <source>Pause queue</source>
-        <translation>Wstrzymaj kolejkę</translation>
+        <translation>Wstrzymać kolejkę</translation>
     </message>
     <message>
         <source>Pause the whole queue? Running jobs finish; no new job starts.</source>
@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>Send a test job</source>
-        <translation>Wyślij zadanie testowe</translation>
+        <translation>Wysłać zadanie testowe</translation>
     </message>
     <message>
         <source>The queue is paused by the setting expqueue.ini [QueueSettings] Paused=enabled.</source>
@@ -168,7 +168,7 @@
     </message>
     <message>
         <source>Show as a table</source>
-        <translation>Pokaż jako tabelę</translation>
+        <translation>Pokazać jako tabelę</translation>
     </message>
     <message>
         <source>Hour</source>
@@ -216,11 +216,11 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Wznów</translation>
+        <translation>Wznowić</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Wstrzymaj</translation>
+        <translation>Wstrzymać</translation>
     </message>
     <message>
         <source>Resources</source>
@@ -340,7 +340,7 @@
     </message>
     <message>
         <source>Requeue all</source>
-        <translation>Przywróć wszystkie do kolejki</translation>
+        <translation>Przywrócić wszystkie do kolejki</translation>
     </message>
     <message>
         <source>Put every dead job back into the queue with its attempts reset?</source>
@@ -360,7 +360,7 @@
     </message>
     <message>
         <source>Cancel group</source>
-        <translation>Anuluj grupę</translation>
+        <translation>Anulować grupę</translation>
     </message>
     <message>
         <source>Cancel every job of this group that has not ended?</source>
@@ -400,7 +400,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Anuluj</translation>
+        <translation>Anulować</translation>
     </message>
     <message>
         <source>Cancel this job?</source>
@@ -408,7 +408,7 @@
     </message>
     <message>
         <source>Requeue</source>
-        <translation>Przywróć do kolejki</translation>
+        <translation>Przywrócić do kolejki</translation>
     </message>
     <message>
         <source>Job</source>
@@ -548,7 +548,7 @@
     </message>
     <message>
         <source>Requeue all dead jobs</source>
-        <translation>Przywróć wszystkie martwe zadania do kolejki</translation>
+        <translation>Przywrócić wszystkie martwe zadania do kolejki</translation>
     </message>
     <message>
         <source>No job matches.</source>
